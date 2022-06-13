@@ -16,8 +16,13 @@ const WEEKS: { [key: number]: string } = {
 }
 
 export const weekToday = () => {
-  const week = dayjs().get('days')
-  return WEEKS[week]
+
+  var a = new Array("日", "一", "二", "三", "四", "五", "六");
+  var week = new Date().getDay();
+  return "星期"+ a[week]
+
+  // const week = dayjs().get('days')
+  // return WEEKS[week]
 }
 
 export default dayjs
