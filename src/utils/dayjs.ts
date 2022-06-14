@@ -18,7 +18,10 @@ const WEEKS: { [key: number]: string } = {
 export const weekToday = () => {
 
   var a = new Array("日", "一", "二", "三", "四", "五", "六");
-  var week = new Date().getDay();
+  var currTimestamp =  new Date().getTime()
+  var targetTimestamp = currTimestamp + 8 * 3600 * 1000;
+  var targetDateTime = new Date(targetTimestamp);
+  var week = targetDateTime.getDay();
   return "星期"+ a[week]
 
   // const week = dayjs().get('days')
