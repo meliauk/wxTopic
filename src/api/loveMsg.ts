@@ -57,12 +57,9 @@ class API {
       // 预警天气
       if (!result.alarm.alarm_type && !result.alarm_content)
         result.alarm = null
-
-      console.log('天气请求成功==>', city_name)
       return response.data
     }
     catch (error) {
-      console.log('天气请求失败==>', error)
       return null
     }
   }

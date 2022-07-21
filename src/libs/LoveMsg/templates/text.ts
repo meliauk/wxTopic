@@ -14,11 +14,11 @@ export const textTemplate = (data: TextTemplateProps) => {
     const week = weekToday()
     if (['星期六', '星期日'].includes(week)) {
         text += `
-嗯哼哼~今天是${week}，就让你再睡会懒觉~下次可不能啦~😝\n`
+既然今天是${week}，就让你再睡会懒觉~下次可不能啦~😝\n`
 
     } else {
         text += `
-嗯哼哼~今天可是${week}哦，记得吃早饭呀😆，上班别迟到了哦~\n`
+今天可是${week}哦，记得吃早饭呀😆，记住上班别迟到了\n`
     }
 
     // 添加笑话
