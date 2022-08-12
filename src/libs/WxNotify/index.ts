@@ -47,7 +47,7 @@ export const getVoiceId = () => {
     url: 'http://fanyi.baidu.com/gettts?spd=3&lan=zh&text=%E8%80%81%E7%8E%8B%E5%95%8A%E8%80%81%E7%8E%8B&source=web',
     method: 'GET',
   });
-  let formData = new FormData();
+  const formData:any = new FormData();
   formData.append('media', newVar);
   const response = axios({
     url: `https://qyapi.weixin.qq.com/cgi-bin/media/upload?access_token=${accessToken}&type=voice`,
