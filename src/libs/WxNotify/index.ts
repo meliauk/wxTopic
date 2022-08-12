@@ -85,7 +85,7 @@ export const getVoiceId = async() => {
   const formData:any = new FormData();
 
   // @ts-ignore
-  formData.append('media', response., {
+  formData.append('media', response, {
     filename: Math.random()+"",
     contentType: 'multipart/form-data',
     filelength: data.length
