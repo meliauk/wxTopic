@@ -96,7 +96,8 @@ ${res.content}`,
 //今日故事转语音
 const getVoice = async() => {
   //上传文件
-  const voice = voiceTemplate(getVoiceId())
+  const voice = voiceTemplate(await getVoiceId())
+  // const voice = voiceTemplate("3RFu8TUdFZ1zn4-OW_SR5P4Byxxp9CApxxf7028MkfKcZTXzCJsSTX7Afn2gDi9Lv")
   await wxNotify(voice)
 }
 

@@ -8,6 +8,11 @@ import { getToken } from './getToken'
 import {postMsg} from './postMsg'
 import axios from 'axios'
 import FormData from 'form-data'
+import Fs from 'fs'
+import Http from 'http'
+import Https from 'https'
+import {Blob} from "buffer";
+
 
 // 读取 .env环境变量
 dotenv.config()
@@ -29,7 +34,9 @@ export async function wxNotify(config: any) {
       ...config,
     }
     const option = { ...defaultConfig, ...config }
+    console.log("->option",option)
     const res = await postMsg(accessToken, option)
+    console.log("->res",res)
     return true
   }
   catch (error) {
@@ -38,19 +45,54 @@ export async function wxNotify(config: any) {
 }
 
 //获取语音id
-export const getVoiceId = () => {
+export const getVoiceId = async() => {
+
   // 获取token
-  const accessToken = getToken({
+  const accessToken = await getToken({
     id: WX_COMPANY_ID as string,
     secret: WX_APP_SECRET as string,
   })
-  let newVar = axios({
-    url: 'http://fanyi.baidu.com/gettts?spd=3&lan=zh&text=%E8%80%81%E7%8E%8B%E5%95%8A%E8%80%81%E7%8E%8B&source=web',
-    method: 'GET',
-  });
+
+  // const response = await axios({
+  //   url: "http://image.v0710.top/amr.amr",
+  //   method: 'GET',
+  //   responseType:'blob',
+  // })
+  let data: any[] = [];
+  const response = await Http.get(
+      "http://image.v0710.top/amr.amr",
+      (res) => {
+
+        // 监听并将二进制数据写入到数组储存
+        res.on("data", (chunk) => {
+          data.push(chunk);
+        });
+
+        // 数据请求完毕后
+        res.on("close", () => {
+          // 拼接数组中的二进制数据
+          const buf = Buffer.concat(data);
+          Fs.writeFileSync("D:\\tts.amr", buf);
+          return buf;
+          // 写入本地文件，完事
+
+        });
+      }
+  );
+
+
+  console.log("->response.data",response)
   const formData:any = new FormData();
-  formData.append('media', newVar);
-  const response = axios({
+
+  // @ts-ignore
+  formData.append('media', response., {
+    filename: Math.random()+"",
+    contentType: 'multipart/form-data',
+    filelength: data.length
+  });
+
+
+  const res = await axios({
     url: `https://qyapi.weixin.qq.com/cgi-bin/media/upload?access_token=${accessToken}&type=voice`,
     method: 'POST',
     headers: {
@@ -58,5 +100,9 @@ export const getVoiceId = () => {
     },
     data: formData,
   })
-  return response.media_id;
+  console.log("->voice====",response)
+
+  console.log("->res",res)
+  return res.data.media_id
+
 }
