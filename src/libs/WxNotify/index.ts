@@ -7,6 +7,7 @@ import dotenv from 'dotenv'
 import { getToken } from './getToken'
 import {postMsg} from './postMsg'
 import axios from 'axios'
+import FormData from 'form-data'
 
 // 读取 .env环境变量
 dotenv.config()
