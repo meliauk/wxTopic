@@ -3,8 +3,9 @@
  * @description 说晚安
  */
 import API from '../../api/loveMsg'
-import { wxNotify } from '../WxNotify'
+import {getVoiceId, wxNotify} from '../WxNotify'
 import { newsTemplate } from './templates/news'
+import { voiceTemplate } from './templates/voice'
 
 // 获取新闻
 const getNews = async() => {
@@ -20,7 +21,6 @@ const getNews = async() => {
     // }))
     // 今日头条
     const todayTopNews = await API.getTianTopNews()
-    console.log('todayTopNews', todayTopNews.length)
 
     // 每次信息最多8个
     // 设定发送两次一共16个信息，数据如果不够则请求另一个接口
@@ -36,7 +36,6 @@ const getNews = async() => {
       result = todayTopNews.slice(0, len >= 8 ? 8 : len)
       // 数据不够，请求另一个接口
       const dailyBriefing = await API.getDailyBriefing()
-      console.log('dailyBriefing', dailyBriefing.length)
       const formateData: TodayHeadlines[] = dailyBriefing.map(n => ({
         ...n,
         title: n.title,
@@ -68,14 +67,12 @@ const getNews = async() => {
     for (let i = 0; i < times; i++) {
       const start = 8 * i
       const end = 8 * i + 8 < result.length ? 8 * i + 8 : result.length
-      console.log(result.length, start, end)
 
       const template = newsTemplate(result.slice(start, end))
       await wxNotify(template)
     }
   }
   catch (error) {
-    console.log('goodEvening', error)
   }
 }
 
@@ -95,9 +92,18 @@ ${res.content}`,
   await wxNotify(template)
 }
 
+
+//今日故事转语音
+const getVoice = async() => {
+  //上传文件
+  const voice = voiceTemplate(getVoiceId())
+  await wxNotify(voice)
+}
+
 // 执行函数
 export const goodEvening = async() => {
   await getStory()
+  await getVoice()
   //新闻
   // await getNews()
 }

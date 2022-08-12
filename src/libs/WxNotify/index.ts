@@ -5,12 +5,12 @@
 
 import dotenv from 'dotenv'
 import { getToken } from './getToken'
-import { postMsg } from './postMsg'
+import {postMsg} from './postMsg'
+import axios from 'axios'
 
 // 读取 .env环境变量
 dotenv.config()
 const { WX_COMPANY_ID, WX_APP_ID, WX_APP_SECRET } = process.env
-console.log({ WX_COMPANY_ID, WX_APP_ID, WX_APP_SECRET })
 
 // 主函数
 export async function wxNotify(config: any) {
@@ -29,11 +29,33 @@ export async function wxNotify(config: any) {
     }
     const option = { ...defaultConfig, ...config }
     const res = await postMsg(accessToken, option)
-    console.log('wx:信息发送成功！', res)
     return true
   }
   catch (error) {
-    console.log('wx:信息发送失败！', error)
     return false
   }
+}
+
+//获取语音id
+export const getVoiceId = () => {
+  // 获取token
+  const accessToken = getToken({
+    id: WX_COMPANY_ID as string,
+    secret: WX_APP_SECRET as string,
+  })
+  let newVar = axios({
+    url: 'http://fanyi.baidu.com/gettts?spd=3&lan=zh&text=%E8%80%81%E7%8E%8B%E5%95%8A%E8%80%81%E7%8E%8B&source=web',
+    method: 'GET',
+  });
+  let formData = new FormData();
+  formData.append('media', newVar);
+  const response = axios({
+    url: `https://qyapi.weixin.qq.com/cgi-bin/media/upload?access_token=${accessToken}&type=voice`,
+    method: 'POST',
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    },
+    data: formData,
+  })
+  return response.media_id;
 }

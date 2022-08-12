@@ -11,7 +11,7 @@ interface MsgData {
 interface PostMsgOption {
   agentid: string; // 应用 id
   touser?: string
-  msgtype: 'text' | 'textcard' | 'mpnews'
+  msgtype: 'text' | 'textcard' | 'mpnews' | 'voice'
   [key: string]: any
 }
 
