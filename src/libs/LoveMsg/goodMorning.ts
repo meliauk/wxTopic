@@ -38,9 +38,10 @@ const goodWord = async() => {
 
     const template = textTemplate(data)
 
-    wxNotify(template)
+    await wxNotify(template)
   }
   catch (error) {
+    console.log("-1111>",error)
   }
 }
 
