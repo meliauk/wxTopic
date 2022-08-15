@@ -63,5 +63,8 @@
     "dayjs": "^1.10.7",
     "dotenv": "^10.0.0",
     "form-data": "^4.0.0"
+  },
+  "directories": {
+    "test": "test"
   }
 }
