@@ -1,12 +1,11 @@
-name: GoodMorning for you
+name: 是早安
 on:
   workflow_dispatch:
     branches:
       - main
   schedule:
     # `分 时 天 月 周` 时按照标准时间 北京时间=标准时间+8 18表示北京时间早上2点
-    # 早上8点
-    - cron: '40 23 * * *'
+    - cron: '50 23 * * *'
 # on:
 #   push:
 #     branches:
@@ -17,37 +16,41 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 1. checkout 仓库
       - uses: actions/checkout@v2
 
-      # - name: Use Node@14.x # 步骤2
-      #   uses: actions/setup-node@v1 # 作用：安装nodejs
-      #   with:
-      #     node-version: 14
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2.0.1
+      - name: Use Node@14.x # 步骤2
+        uses: actions/setup-node@v1 # 作用：安装nodejs
         with:
-          version: 6.15.1
+           node-version: 17.1.0
 
+      # 2. 设置pnpm包管理器
+      #- name: Install pnpm
+      #  uses: pnpm/action-setup@v2.0.1
+      #  with:
+      #    version: 6.15.1
+
+      # 3. 设置Node环境
       - name: Set node version to ${{ matrix.node_version }}
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node_version }}
-          cache: 'pnpm'
+      #    cache: 'pnpm' # 配置缓存，优化安装性能
 
+      # 4. 安装依赖
       - name: Install
-        run: pnpm install
+        run: npm install
 
+      # 当前模式直接执行脚本请求接口，因此不执行构建逻辑
       # - name: Build
       #   run: pnpm build
 
-      # 运行脚本
+      # 5. 运行脚本
       - name: 运行脚本
-        run: pnpm start
+        run: npm run start
         env:
           WX_COMPANY_ID: ${{ secrets.WX_COMPANY_ID }}
           WX_APP_ID: ${{ secrets.WX_APP_ID }}
           WX_APP_SECRET: ${{ secrets.WX_APP_SECRET }}
-          WX_BOT_KEY: ${{ secrets.WX_BOT_KEY }}
           TIAN_API_KEY: ${{ secrets.TIAN_API_KEY }}
           MESSAGE_TYPE: goodMorning
