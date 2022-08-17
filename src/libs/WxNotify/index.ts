@@ -75,7 +75,7 @@ export const getVoiceId = async() => {
           // 拼接数组中的二进制数据
           const buf = Buffer.concat(data);
           // 写入本地文件，完事
-          Fs.writeFileSync("D:\\tts.amr", buf);
+          Fs.writeFileSync("D:\\tts.amr", buf)
 
           const formData:any = new FormData();
 
