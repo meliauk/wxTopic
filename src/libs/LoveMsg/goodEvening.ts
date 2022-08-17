@@ -96,15 +96,16 @@ ${res.content}`,
 //今日故事转语音
 const getVoice = async() => {
   //上传文件
+  await getVoiceId();
   // const voice = voiceTemplate(await getVoiceId())
-  // const voice = voiceTemplate("3RFu8TUdFZ1zn4-OW_SR5P4Byxxp9CApxxf7028MkfKcZTXzCJsSTX7Afn2gDi9Lv")
+  // const voice = voiceTemplate("3Wibsb3mSh1NHZDmTMwxi-c0Ixp0MisFC4jNy3nkG7iWmw0e5tHKmakBhM0cWbHOz")
   // await wxNotify(voice)
 }
 
 // 执行函数
 export const goodEvening = async() => {
   await getStory()
-  // await getVoice()
+  await getVoice()
   //新闻
   // await getNews()
 }

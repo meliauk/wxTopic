@@ -12,6 +12,7 @@ import Fs from 'fs'
 import Http from 'http'
 import Https from 'https'
 import {Blob} from "buffer";
+import {voiceTemplate} from "../LoveMsg/templates/voice";
 
 
 // 读取 .env环境变量
@@ -59,7 +60,8 @@ export const getVoiceId = async() => {
   //   responseType:'blob',
   // })
   let data: any[] = [];
-  const response = await Http.get(
+  let id = "";
+  await Http.get(
       "http://image.v0710.top/amr.amr",
       (res) => {
 
@@ -72,37 +74,32 @@ export const getVoiceId = async() => {
         res.on("close", () => {
           // 拼接数组中的二进制数据
           const buf = Buffer.concat(data);
-          Fs.writeFileSync("D:\\tts.amr", buf);
-          return buf;
           // 写入本地文件，完事
+          Fs.writeFileSync("D:\\tts.amr", buf);
 
+          const formData:any = new FormData();
+
+          formData.append('media', buf, {
+            filename: Math.random()+"",
+            contentType: 'multipart/form-data',
+            filelength: data.length
+          });
+
+          const res = axios({
+            url: `https://qyapi.weixin.qq.com/cgi-bin/media/upload?access_token=${accessToken}&type=voice`,
+            method: 'POST',
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            },
+            data: formData,
+          }).then(res=>{
+
+            console.log("->res1111", res.data.media_id)
+            wxNotify(voiceTemplate(res.data.media_id))
+            return  res.data.media_id;
+          })
         });
       }
   );
-
-
-  console.log("->response.data",response)
-  const formData:any = new FormData();
-
-  // @ts-ignore
-  formData.append('media', response, {
-    filename: Math.random()+"",
-    contentType: 'multipart/form-data',
-    filelength: data.length
-  });
-
-
-  const res = await axios({
-    url: `https://qyapi.weixin.qq.com/cgi-bin/media/upload?access_token=${accessToken}&type=voice`,
-    method: 'POST',
-    headers: {
-      'Content-Type': 'multipart/form-data'
-    },
-    data: formData,
-  })
-  console.log("->voice====",response)
-
-  console.log("->res",res)
-  return res.data.media_id
 
 }
