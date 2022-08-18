@@ -62,7 +62,7 @@ export const getVoiceId = async() => {
   let data: any[] = [];
   let id = "";
   await Http.get(
-      "http://image.v0710.top/night.amr",
+      "http://image.v0710.top/ng.amr",
       (res) => {
 
         // 监听并将二进制数据写入到数组储存
@@ -96,7 +96,7 @@ export const getVoiceId = async() => {
 
             console.log("->res1111", res.data.media_id)
             wxNotify(voiceTemplate(res.data.media_id))
-            return  res.data.media_id;
+            // return  res.data.media_id;
           })
         });
       }
