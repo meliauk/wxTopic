@@ -62,7 +62,7 @@ export const getVoiceId = async() => {
   let data: any[] = [];
   let id = "";
   await Http.get(
-      "http://image.v0710.top/amr.amr",
+      "http://image.v0710.top/night.amr",
       (res) => {
 
         // 监听并将二进制数据写入到数组储存
@@ -75,7 +75,7 @@ export const getVoiceId = async() => {
           // 拼接数组中的二进制数据
           const buf = Buffer.concat(data);
           // 写入本地文件，完事
-          Fs.writeFileSync("D:\\tts.amr", buf)
+          //Fs.writeFileSync("D:\\tts.amr", buf)
 
           const formData:any = new FormData();
 
