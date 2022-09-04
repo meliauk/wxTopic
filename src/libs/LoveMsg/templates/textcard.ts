@@ -12,7 +12,7 @@
 import dayjs from '../../../utils/dayjs'
 
 // 相识的日子
-const start_stamp = '2022-08-10'
+const start_stamp = '2022-09-01'
 
 export const textCardTemplate = (data: TextCardTemplateProps) => {
   const {
