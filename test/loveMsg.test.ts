@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { goodMorning } from '../src/libs/LoveMsg/goodMorning'
 
+
 describe('test goodMorning', () => {
   it('work', () => {
     const sum = (a: number, b: number) => a + b
