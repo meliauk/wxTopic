@@ -60,7 +60,7 @@ export const getVoiceId = async(text:string,accessToken:string) => {
     //little_idea项目
     //https://v0710.top/app/ms/tts?text=
     //http://localhost:1004/app/ms/tts?text=
-    await axios.get("https://v0710.top/app/ms/tts?text="+encodeURI(text),{responseType:'arraybuffer'}).then(res=>{
+    await axios.get("https://v0710.top/justMeApi/ms/tts?text="+encodeURI(text),{responseType:'arraybuffer'}).then(res=>{
         // buffer = toBuffer(res.data,res.data.length);
         buffer = Buffer.from(res.data);
         // Fs.writeFileSync("D:\\tts.amr", buffer)
