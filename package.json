@@ -60,9 +60,11 @@
   },
   "dependencies": {
     "axios": "^0.24.0",
+    "benz-amr-recorder": "^1.1.5",
     "dayjs": "^1.10.7",
     "dotenv": "^10.0.0",
-    "form-data": "^4.0.0"
+    "form-data": "^4.0.0",
+    "microsoft-cognitiveservices-speech-sdk": "^1.28.0"
   },
   "directories": {
     "test": "test"
