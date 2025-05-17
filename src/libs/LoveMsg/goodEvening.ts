@@ -138,7 +138,7 @@ const getVoice = async (text: StorybookProps | undefined) => {
 
 // 执行函数
 export const goodEvening = async () => {
-    await getVoice(await getStory())
+    // await getVoice(await getStory())
     //新闻
-    // await getNews()
+    await getNews()
 }

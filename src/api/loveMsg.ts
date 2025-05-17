@@ -8,29 +8,29 @@ enum LoveMsgURL {
   // 天气
   weather = 'https://v0.yiketianqi.com/api?unescape=1&version=v61&appid=43656176&appsecret=I42og6Lm',
   // 每日简报
-  dailyBriefing = 'http://api.tianapi.com/bulletin/index',
+  dailyBriefing = 'http://apis.tianapi.com/bulletin/index',
   // 今日头条
-  topNews = 'http://api.tianapi.com/topnews/index',
+  topNews = 'http://apis.tianapi.com/topnews/index',
   // 最美宋词
-  songLyrics = 'http://api.tianapi.com/zmsc/index',
+  songLyrics = 'http://apis.tianapi.com/zmsc/index',
   // 每日一句美好英语
-  dayEnglish = 'http://api.tianapi.com/everyday/index',
+  dayEnglish = 'http://apis.tianapi.com/everyday/index',
   // 韩寒主编的ONE一个杂志，本接口返回每日一句
-  oneMagazines = 'http://api.tianapi.com/one/index',
+  oneMagazines = 'http://apis.tianapi.com/one/index',
   // 故事大全
-  storybook = 'http://api.tianapi.com/story/index',
+  storybook = 'http://apis.tianapi.com/story/index',
   // 网易云热评
-  netEaseCloud = 'http://api.tianapi.com/hotreview/index',
+  netEaseCloud = 'http://apis.tianapi.com/hotreview/index',
   // 获取农历信息
-  lunarDate = 'http://api.tianapi.com/lunar/index',
+  lunarDate = 'http://apis.tianapi.com/lunar/index',
   // 土味情话
-  saylove = 'http://api.tianapi.com/saylove/index',
+  saylove = 'http://apis.tianapi.com/saylove/index',
   // 彩虹屁
-  caihongpi = 'http://api.tianapi.com/caihongpi/index',
+  caihongpi = 'http://apis.tianapi.com/caihongpi/index',
   // 励志古言
-  inspirationalWord = 'http://api.tianapi.com/lzmy/index',
+  inspirationalWord = 'http://apis.tianapi.com/lzmy/index',
   // 笑话
-  joke = 'http://api.tianapi.com/joke/index',
+  joke = 'http://apis.tianapi.com/joke/index',
   // 一言
   oneWord = 'https://v1.hitokoto.cn/?encode=json',
 }

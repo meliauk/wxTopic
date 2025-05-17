@@ -9,13 +9,13 @@ const instance = axios.create({
   timeout: 30000,
 })
 
+//对响应结果进行处理
 instance.interceptors.response.use(
   (response) => {
     const res = response.data
     // 正确状态
-    // TODO: 这里只针对符合该条件的接口
     if (res.code === 200)
-      return res.newslist
+      return res.result.list
 
     return undefined
   },
@@ -26,6 +26,7 @@ instance.interceptors.response.use(
 
 const request = <T = any>(config: AxiosRequestConfig, options?: AxiosRequestConfig): Promise<T> => {
   console.log('config', config)
+  console.log('options', options)
   if (typeof config === 'string') {
     if (!options) {
       return instance.request<T, T>({
