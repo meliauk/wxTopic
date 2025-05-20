@@ -15,7 +15,11 @@ instance.interceptors.response.use(
     const res = response.data
     // 正确状态
     if (res.code === 200)
-      return res.result.list
+      console.log('===>请求响应res' , JSON.stringify(res))
+      if(!res?.result?.list) {
+        return res.result
+      }
+    return res?.result.list
 
     return undefined
   },

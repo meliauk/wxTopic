@@ -11,8 +11,8 @@
 
 import dayjs from '../../../utils/dayjs'
 
-// 相识的日子
-const start_stamp = '2022-09-01'
+// TODO 相识的日子
+const start_stamp = '2025-05-16'
 
 export const textCardTemplate = (data: TextCardTemplateProps) => {
   const {
@@ -22,10 +22,10 @@ export const textCardTemplate = (data: TextCardTemplateProps) => {
     tem1,
     tem2,
     win,
-    win_speed_day,
+    win_speed,
     air,
     air_level,
-    // air_tips,
+    air_tips,
     humidity,
     alarm,
     lunarInfo,
@@ -48,7 +48,7 @@ export const textCardTemplate = (data: TextCardTemplateProps) => {
 农历 | ${lubarmonth}${lunarday} ${lunar_festival_info} ${jieqi_info}\n
 今日天气状况：
 天气：${wea}
-${win}：${win_speed_day}
+${win}：${win_speed}
 温度：${tem2}℃ ~ ${tem1}℃
 湿度：${humidity}
 空气：${air_level} | ${air}\n`
@@ -74,10 +74,10 @@ ${win}：${win_speed_day}
 今日最高温度已高达😛 ${tem1}℃，出门记得要带伞~\n`
   }
 
-  //   if (air_tips) {
-  //     description += `
-  // 出行建议：${air_tips}`
-  //   }
+  if (air_tips) {
+    description += `
+  出行建议：${air_tips}`
+  }
 
   if (oneWord) {
     description += `
@@ -97,7 +97,7 @@ ${win}：${win_speed_day}
       description,
       //   url: 'https://api.lovelive.tools/api/SweetNothings',
       //   url: 'https://v1.jinrishici.com/all.svg',
-      url: 'https://api.vvhan.com/api/60s', // 60s看世界
+      url: 'https://lzw.me/x/60s/', // 60s看世界
       btntxt: '王余凡',
     },
   }

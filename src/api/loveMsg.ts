@@ -6,7 +6,7 @@ import { getTian } from '../utils/http'
  */
 enum LoveMsgURL {
   // 天气
-  weather = 'https://v0.yiketianqi.com/api?unescape=1&version=v61&appid=43656176&appsecret=I42og6Lm',
+  weather = 'http://gfeljm.tianqiapi.com/api?unescape=1&version=v61&appid=78529319&appsecret=3zTKyI77',
   // 每日简报
   dailyBriefing = 'http://apis.tianapi.com/bulletin/index',
   // 今日头条
@@ -109,7 +109,7 @@ class API {
   // 获取农历信息
   async getLunarDate(date: string) {
     const res = await getTian<ResLunarDateProps[]>({ url: LoveMsgURL.lunarDate, params: { date } })
-    return res?.[0]
+    return res
   }
 
   // 土味情话
