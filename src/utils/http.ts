@@ -9,16 +9,16 @@ const instance = axios.create({
   timeout: 30000,
 })
 
-//对响应结果进行处理
+// 对响应结果进行处理
 instance.interceptors.response.use(
   (response) => {
     const res = response.data
+    console.log('请求响应res', res)
     // 正确状态
-    if (res.code === 200)
-      console.log('===>请求响应res' , JSON.stringify(res))
-      if(!res?.result?.list) {
+    if (res.code === 200) {
+      if (!(res?.result?.list))
         return res.result
-      }
+    }
     return res?.result.list
 
     return undefined
