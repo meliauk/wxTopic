@@ -38,7 +38,7 @@ export const textCardTemplate = (data: TextCardTemplateProps) => {
   const dateLength = dayjs(date).diff(start_stamp, 'day')
 
   // 公历节日、农历节日和二十四节气
-  const { festival, lunar_festival, jieqi, lubarmonth, lunarday } = lunarInfo
+  const { lunar_festival, jieqi, lubarmonth, lunarday, festival= ''} = lunarInfo
   const festival_info = festival ? `| ${festival}` : ''
   const lunar_festival_info = lunar_festival ? `| ${lunar_festival}` : ''
   const jieqi_info = jieqi ? `| ${jieqi}` : ''
