@@ -48,7 +48,7 @@ const goodWord = async() => {
 // 天气信息
 const weatherInfo = async() => {
   //TODO 天气
-  const weather = await API.getWeather('长沙')
+  const weather = await API.getWeather('双流')
   if (weather) {
     const lunarInfo = await API.getLunarDate(weather.date)
     const oneWord = await API.getOneWord()

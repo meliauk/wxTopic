@@ -12,7 +12,7 @@
 import dayjs from '../../../utils/dayjs'
 
 // TODO 相识的日子
-const start_stamp = '2025-05-16'
+const start_stamp = '2025-06-08'
 
 export const textCardTemplate = (data: TextCardTemplateProps) => {
   const {
